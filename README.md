@@ -4,7 +4,13 @@ Tareas del curso de "FUNDAMENTOS DE CIENCIA DE DATO"
 # Parte 1
 En base a estas lecturas, ***explica los aspectos de la plataforma que caen dentro de la metodología CRISP-DM y aquellas que se necesitan mirar desde el paper de Martínez-Plumed***
 
-## De CRISP-DM a las Trayectorias de Ciencia de Datos (DST): El caso de Michelangelo en Uber  
+# $\color{red}{\textbf{De CRISP-DM a las Trayectorias de Ciencia de Datos (DST): El caso de Michelangelo en Uber}}$
+
+## Contenido
+ 
+- [Michelangelo bajo el marco CRISP-DM](#michelangelo-bajo-el-marco-crisp-dm)
+- [Los límites de CRISP-DM y la entrada del marco DST](#los-límites-de-crisp-dm-y-la-entrada-del-marco-dst)
+- [Conclusión](#conclusión)
 
 La plataforma de Inteligencia Artificial de Uber, Michelangelo, ilustra la transición metodológica desde la minería de datos tradicional hacia las plataformas integradas de Ciencia de Datos a gran escala. A través del análisis de su diseño original en 2017 y su posterior evolución hacia la Inteligencia Artificial Generativa en 2024, es posible identificar qué componentes se ajustan al ciclo tradicional de CRISP-DM y cuáles exigen ser interpretados mediante el marco de **Trayectorias de Ciencia de Datos (DST)** propuesto por Martínez-Plumed et al.
 
@@ -29,7 +35,12 @@ En cuanto a la exploración abierta, CRISP-DM presupone la existencia de metas d
 En la gobernanza organizacional, la asignación de recursos dentro de Michelangelo también requiere la perspectiva de DST, la cual modela la interacción entre perfiles técnicos (ingenieros de datos, ingenieros de ML, científicos aplicados) y la jerarquización de proyectos. Michelangelo 2.0 categoriza las iniciativas mediante un sistema de tiering según su impacto en el negocio, garantizando soporte técnico y acuerdos de nivel de servicio (_SLA_) diferenciados. Del mismo modo, la plataforma supera la evaluación técnica puntual de CRISP-DM (centrada en AUC o RMSE) al implementar un sistema de calidad holístico que mide la frescura de los datos, la latencia de inferencia, la reproducibilidad y la observabilidad operativa.
 
 ### Conclusión
+La trayectoria de Michelangelo demuestra que CRISP-DM resulta plenamente funcional para estructurar el ciclo de vida técnico de un modelo predictivo particular: sus seis fases siguen describiendo con precisión cómo se transforma una necesidad de negocio en un modelo entrenado, evaluado y desplegado. Sin embargo, al observar la plataforma como un todo y no como la suma de proyectos aislados esa estructura lineal deja de capturar buena parte de lo que ocurre dentro de Uber. La administración de un ecosistema industrializado y escalable de Inteligencia Artificial requiere la perspectiva de Martínez-Plumed et al., que integra la gestión de infraestructura, la exploración no lineal y la gobernanza organizacional como elementos insustituibles para el valor continuo de los datos.
 
-La trayectoria de Michelangelo demuestra que CRISP-DM resulta plenamente funcional para estructurar el ciclo de vida técnico de un modelo predictivo particular. Sin embargo, la administración de un ecosistema industrializado y escalable de Inteligencia Artificial requiere la perspectiva expuesta por Martínez-Plumed et al., la cual integra la gestión de infraestructura, la exploración científica no lineal y la gobernanza organizacional como elementos insustituibles para garantizar el valor continuo de los datos en las organizaciones modernas.
+Esta distinción tiene implicaciones prácticas: adoptar solo la lógica de CRISP-DM llevaría a tratar cada iniciativa como un proyecto autocontenido, subestimando el Feature Store como activo compartido, la naturaleza exploratoria del desarrollo con modelos de lenguaje y la necesidad de priorizar recursos entre equipos. DST, en cambio, describe cómo las organizaciones maduras operan en dos planos: el técnico, donde CRISP-DM sigue vigente por modelo, y el estratégico, donde infraestructura, exploración y gobernanza determinan si esa capacidad se traduce en valor sostenido. Ambos marcos, entonces, son complementarios y de distinta escala.
 
-
+---
+## Referencias
+ 
+- Wirth, R., & Hipp, J. (2000). *CRISP-DM: Towards a standard process model for data mining*. 
+- Martínez-Plumed, F., Contreras-Ochando, L., Ferri, C., Hernández-Orallo, J., Kull, M., Lachiche, N., Ramírez-Quintana, M. J., & Flach, P. (2021). *CRISP-DM twenty years later: From data mining processes to data science trajectories*. 
