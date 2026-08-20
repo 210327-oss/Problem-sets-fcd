@@ -1,7 +1,8 @@
 # Problem-sets-fcd
 Tareas del curso de "FUNDAMENTOS DE CIENCIA DE DATO"
 
-# <span style="color:red;">La Evolución de Michelangelo: De CRISP-DM a las Trayectorias de Ciencia de Datos</span>
+# $\color{red}{\textbf{La Evolución de Michelangelo: De CRISP-DM a las Trayectorias de Ciencia de Datos}}$
+
 
 ## Índice
 
