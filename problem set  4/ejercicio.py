@@ -46,9 +46,6 @@ def print_tabla(df: pd.DataFrame, pct_cols=None):
             df[col] = df[col].map(lambda x: f"{x:,}")
     print(df.to_string(index=False))
 
-
-# ---------------------------------------------------------------------------
-# Punto 1: % de ninos 0-5 sin red publica de desague
 # ---------------------------------------------------------------------------
 # Punto 1: % de ninos 0-5 sin red publica de desague
 # ---------------------------------------------------------------------------
