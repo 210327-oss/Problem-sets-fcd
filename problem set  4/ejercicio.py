@@ -49,7 +49,6 @@ def print_tabla(df: pd.DataFrame, pct_cols=None):
 
 # ---------------------------------------------------------------------------
 # Punto 1: % de ninos 0-5 sin red publica de desague
-# "0 a 5 anos" incluye al 5 -> BETWEEN 0 AND 5 (inclusivo en ambos extremos)
 # ---------------------------------------------------------------------------
 q1 = con.execute("""
     SELECT
@@ -58,7 +57,7 @@ q1 = con.execute("""
         ROUND(100.0 * SUM(CASE WHEN c2_p10 NOT IN (1, 2) THEN 1 ELSE 0 END)
               / COUNT(*), 1)                                       AS pct_no_sewer
     FROM people
-    WHERE c5_p4_1 BETWEEN 0 AND 5
+    WHERE c5_p4_1 < 5
 """).df()
 
 print_header("PUNTO 1: Ninos 0-5 anos sin red publica de desague")
@@ -70,16 +69,17 @@ print(f"\n-> {q1['pct_no_sewer'][0]:.1f}% de los ninos de 0 a 5 anos "
 
 # ---------------------------------------------------------------------------
 # Punto 2 y 4: % de afiliacion a seguro por grupo etario
+# Intervalos: cerrado por la izquierda, abierto por la derecha [a, b)
 # ---------------------------------------------------------------------------
 q2 = con.execute("""
     WITH t AS (
         SELECT
             CASE
-                WHEN c5_p4_1 <= 5  THEN '1: [0-5]'
-                WHEN c5_p4_1 < 15  THEN '2: (5-15)'
-                WHEN c5_p4_1 < 35  THEN '3: [15-35)'
-                WHEN c5_p4_1 < 65  THEN '4: [35-65)'
-                ELSE                    '5: [65+)'
+                WHEN c5_p4_1 < 5  THEN '1: [0-5)'
+                WHEN c5_p4_1 < 15 THEN '2: [5-15)'
+                WHEN c5_p4_1 < 35 THEN '3: [15-35)'
+                WHEN c5_p4_1 < 65 THEN '4: [35-65)'
+                ELSE                   '5: [65+)'
             END AS age_group,
             CASE WHEN (COALESCE(c5_p8_1,0) + COALESCE(c5_p8_2,0)
                      + COALESCE(c5_p8_3,0) + COALESCE(c5_p8_4,0)
@@ -105,7 +105,8 @@ print(f"-> Menor afiliacion: grupo {fila_min['age_group']} ({fila_min['pct_insur
 
 
 # ---------------------------------------------------------------------------
-# Punto 3: tasa de empleo (15-64)
+# Punto 3: tasa de empleo (15-64), BETWEEN es inclusivo en ambos extremos,
+# lo cual coincide con "poblacion de 15 a 64 anos" 
 # ---------------------------------------------------------------------------
 q3 = con.execute("""
     SELECT
@@ -125,6 +126,3 @@ print(f"\n-> Tasa de empleo: {q3['employment_rate'][0]:.1f}% "
       f"({q3['employed'][0]:,} de {q3['working_age_pop'][0]:,} personas en edad de trabajar).")
 
 con.close()
-
-
-
