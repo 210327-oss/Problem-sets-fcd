@@ -50,6 +50,8 @@ def print_tabla(df: pd.DataFrame, pct_cols=None):
 # ---------------------------------------------------------------------------
 # Punto 1: % de ninos 0-5 sin red publica de desague
 # ---------------------------------------------------------------------------
+# Punto 1: % de ninos 0-5 sin red publica de desague
+# ---------------------------------------------------------------------------
 q1 = con.execute("""
     SELECT
         SUM(CASE WHEN c2_p10 NOT IN (1, 2) THEN 1 ELSE 0 END)::INT AS kids_no_sewer,
@@ -57,7 +59,7 @@ q1 = con.execute("""
         ROUND(100.0 * SUM(CASE WHEN c2_p10 NOT IN (1, 2) THEN 1 ELSE 0 END)
               / COUNT(*), 1)                                       AS pct_no_sewer
     FROM people
-    WHERE c5_p4_1 < 5
+    WHERE c5_p4_1 <= 5
 """).df()
 
 print_header("PUNTO 1: Ninos 0-5 anos sin red publica de desague")
@@ -65,8 +67,6 @@ print_tabla(q1, pct_cols=["pct_no_sewer"])
 print(f"\n-> {q1['pct_no_sewer'][0]:.1f}% de los ninos de 0 a 5 anos "
       f"({q1['kids_no_sewer'][0]:,} de {q1['kids_total'][0]:,}) "
       "no tiene acceso a red publica de desague.")
-
-
 # ---------------------------------------------------------------------------
 # Punto 2 y 4: % de afiliacion a seguro por grupo etario
 # Intervalos: cerrado por la izquierda, abierto por la derecha [a, b)
